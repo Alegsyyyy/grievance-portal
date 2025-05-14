@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grievance Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fef3f3;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    .hidden { display: none; }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(200, 0, 0, 0.2);
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #d32f2f;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    h2 {
+      color: #b71c1c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="password-section">
+    <h2>Enter Portal Password</h2>
+    <input type="password" id="password-input" placeholder="Password" />
+    <button onclick="checkPassword()">Enter</button>
+    <p id="error-msg" style="color:red;"></p>
+  </div>
+
+  <div class="container hidden" id="form-section">
+    <h2>Submit Your Grievance</h2>
+    <form action="https://formsubmit.co/alexgabrielsimon@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <label>Your Name</label>
+      <input type="text" name="name" required />
+
+      <label>Grievance</label>
+      <textarea name="grievance" rows="5" required></textarea>
+
+      <label>How offended are you (1-10)?</label>
+      <input type="number" name="offense_level" min="1" max="10" required />
+
+      <button type="submit">Submit Grievance</button>
+    </form>
+  </div>
+
+  <script>
+    const correctPassword = "justice4me";
+
+    function checkPassword() {
+      const input = document.getElementById("password-input").value;
+      if (input === correctPassword) {
+        document.getElementById("password-section").classList.add("hidden");
+        document.getElementById("form-section").classList.remove("hidden");
+      } else {
+        document.getElementById("error-msg").innerText = "Incorrect password. Try again.";
+      }
+    }
+  </script>
+</body>
+</html>
